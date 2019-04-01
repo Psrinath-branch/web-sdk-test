@@ -1,44 +1,49 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="branchWebSDKApp">
+
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Branch WEB SDK Test</title>
-  <script>
-      // load Branch
-      (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
-      // init Branch
-      branch.init('key_live_phPajvOnVBo9r38HkfR40ogfyuovtPKG',function(err, data) {
-          console.log("Initializing Branch SDK...")
-          console.log(err, data)
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
 
-          var linkData = {
-              campaign: 'content 123',
-              channel: 'facebook',
-              feature: 'dashboard',
-              stage: 'new user',
-              tags: [ 'tag1', 'tag2', 'tag3' ],
-              alias: '',
-              data: {
-                  'custom_bool': true,
-                  'custom_int': Date.now(),
-                  'custom_string': 'hello'
-              }
-          };
-
-          branch.link(linkData, function(err, link) {
-              // bind elements
-              document.getElementById('button').onclick = function() {
-                  window.open(link || err);
-              };
-              document.getElementById('anchor').href = link || err;
-          });
-
-      });
-  </script>
-  <p>This is a simple web application to validate Branch WEB SDK </p>
-  <button id="button">deep link</button>
-  <a id="anchor" href="#">deep link</a>
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="script.js"></script>
 </head>
-<body>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Branch WEB SDK Example</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+        <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+    
+  </div>
+
+  <footer class="text-center">
+    <p>View the tutorial on <a href="https://docs.branch.io/web/integrate/">Branch WEB SDK</a></p>
+
+  </footer>
+
 </body>
+
 </html>
